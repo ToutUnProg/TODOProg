@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
-import com.toutunprog.todoprog.adapter.TodosAdapter
+import com.toutunprog.todoprog.adapter.OnTodoListItemClickListener
+import com.toutunprog.todoprog.adapter.TodoListAdapter
+import com.toutunprog.todoprog.model.TodoList
 import com.toutunprog.todoprog.repository.TodoListRepository
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         viewManager = LinearLayoutManager(this)
         val dataset = TodoListRepository().getDataSet()
-        viewAdapter = TodosAdapter(dataset)
+        viewAdapter = TodoListAdapter(dataset, object : OnTodoListItemClickListener {
+            override fun onTodoListItemClick(todoListItem: TodoList) {
+                Snackbar.make(fab, "click on ${todoListItem.title}", Snackbar.LENGTH_LONG).setAction("Action", null)
+                    .show()
+            }
+        })
 
         main_todos_recyclerview.apply {
             setHasFixedSize(true)
