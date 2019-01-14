@@ -1,6 +1,6 @@
 package com.toutunprog.todoprog.model
 
-data class TodoList (val title:String, val items : Array<TodoItem>) {
+data class TodoList(val index: Int, val title: String, val items: Array<TodoItem>) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

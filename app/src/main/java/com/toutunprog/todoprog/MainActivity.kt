@@ -34,8 +34,7 @@ class MainActivity : AppCompatActivity() {
         val dataset = TodoListRepository().getDataSet()
         viewAdapter = TodoListAdapter(dataset, object : OnTodoListItemClickListener {
             override fun onTodoListItemClick(todoListItem: TodoList) {
-                Snackbar.make(fab, "click on ${todoListItem.title}", Snackbar.LENGTH_LONG).setAction("Action", null)
-                    .show()
+                startActivity(TodoDetailActivity.createIntent(this@MainActivity, todoListItem.index))
             }
         })
 
