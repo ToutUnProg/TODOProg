@@ -7,7 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
-import com.toutunprog.todoprog.adapter.TODOSAdapter
+import com.toutunprog.todoprog.adapter.TodosAdapter
+import com.toutunprog.todoprog.repository.TodoListRepository
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -28,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewManager = LinearLayoutManager(this)
-        val dataset = Array(5) { "it = $it" }
-        viewAdapter = TODOSAdapter(dataset)
+        val dataset = TodoListRepository().getDataSet()
+        viewAdapter = TodosAdapter(dataset)
 
         main_todos_recyclerview.apply {
             setHasFixedSize(true)

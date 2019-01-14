@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.toutunprog.todoprog.R
+import com.toutunprog.todoprog.model.TodoList
 
-class TODOSAdapter(private val myDataset: Array<String>) : RecyclerView.Adapter<TODOSAdapter.ViewHolder>() {
+class TodosAdapter(private val myDataset: Array<TodoList>) : RecyclerView.Adapter<TodosAdapter.ViewHolder>() {
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
 
@@ -20,7 +21,7 @@ class TODOSAdapter(private val myDataset: Array<String>) : RecyclerView.Adapter<
     override fun getItemCount() = myDataset.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = myDataset[position]
+        holder.textView.text = myDataset[position].title
     }
 
 
