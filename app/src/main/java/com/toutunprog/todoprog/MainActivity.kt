@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewManager = LinearLayoutManager(this)
+        val dataset = Array(5) { "it = $it" }
         viewAdapter = TODOSAdapter(dataset)
 
         main_todos_recyclerview.apply {
