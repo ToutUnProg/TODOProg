@@ -3,6 +3,7 @@
           package="com.toutunprog.todoprog">
 
     <application
+            android:name=".TodoApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -10,7 +11,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".MainActivity"
+                android:name=".view.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".TodoDetailActivity">
+                android:name=".view.TodoDetailActivity">
         </activity>
     </application>
 

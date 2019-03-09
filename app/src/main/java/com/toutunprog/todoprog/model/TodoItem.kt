@@ -1,3 +1,6 @@
 package com.toutunprog.todoprog.model
 
-data class TodoItem(val text: String, val done: Boolean)
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class TodoItem(val index: Int, val text: String, val done: Boolean)
