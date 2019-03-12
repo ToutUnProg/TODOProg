@@ -4,4 +4,7 @@
 	<string name="create_todo_title">Create Todo list</string>
 	<string name="create_todo_description">Create a new Todo list</string>
 	<string name="create_todo_hint">Todo list name</string>
+	<string name="add_todo_item_title">Add Todo Item</string>
+	<string name="add_todo_item_description">Add an item to the Todo List</string>
+	<string name="add_todo_item_hint">Todo list item</string>
 </resources>

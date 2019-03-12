@@ -4,5 +4,8 @@
 	<string name="create_todo_title">Créer liste de taches</string>
 	<string name="create_todo_description">Créer une nouvelle liste de tache</string>
 	<string name="create_todo_hint">Nom de liste de tache</string>
+	<string name="add_todo_item_title">Ajouter une tache</string>
+	<string name="add_todo_item_description">Ajouter une tache à la liste</string>
+	<string name="add_todo_item_hint">Tache</string>
 
 </resources>

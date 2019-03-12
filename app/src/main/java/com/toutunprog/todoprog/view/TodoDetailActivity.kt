@@ -58,9 +58,9 @@ class TodoDetailActivity : AppCompatActivity() {
 			contentView?.let {
 				val dialogBuilder = AlertDialogBuilder(
 					AnkoContext.create(this, it),
-					R.string.create_todo_title,
-					R.string.create_todo_description,
-					R.string.create_todo_hint
+					R.string.add_todo_item_title,
+					R.string.add_todo_item_description,
+					R.string.add_todo_item_hint
 				) { text ->
 					val repo = (application as TodoApplication).todoIRepository
 					val newItems = todoList.items.toMutableList()
