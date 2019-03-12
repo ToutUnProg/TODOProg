@@ -9,33 +9,37 @@ import com.toutunprog.todoprog.R
 import com.toutunprog.todoprog.model.TodoItem
 
 class TodoItemAdapter(
-    private val myDataset: Array<TodoItem>
+	private var myDataset: Array<TodoItem>
 ) : RecyclerView.Adapter<TodoItemAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val textView: TextView = view as TextView
+		val textView: TextView = view as TextView
 
-        fun bind(todoItem: TodoItem) {
-            textView.text = todoItem.text
+		fun bind(todoItem: TodoItem) {
+			textView.text = todoItem.text
 
-        }
-    }
+		}
+	}
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.todos_textview, parent, false)
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+		val view = LayoutInflater.from(parent.context)
+			.inflate(R.layout.todos_textview, parent, false)
 
-        return ViewHolder(view)
-    }
+		return ViewHolder(view)
+	}
 
-    override fun getItemCount() = myDataset.size
+	override fun getItemCount() = myDataset.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(myDataset[position])
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+		holder.bind(myDataset[position])
 
-    }
+	}
 
+	fun updateData(dataset: Array<TodoItem>) {
+		myDataset = dataset
+		notifyDataSetChanged()
+	}
 
 }

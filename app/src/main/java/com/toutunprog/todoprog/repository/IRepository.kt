@@ -6,4 +6,5 @@ interface IRepository<T> {
 	fun insert(entity: T)
 	fun update(oldEntity: T, newEntity: T)
 	fun delete(entity: T)
+	fun getSize(): Int
 }

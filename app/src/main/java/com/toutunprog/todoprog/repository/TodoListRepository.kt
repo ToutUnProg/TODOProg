@@ -29,11 +29,16 @@ class TodoListRepository(private val context: Context) : IRepository<TodoList> {
 	override fun update(oldEntity: TodoList, newEntity: TodoList) {
 		delete(oldEntity)
 		insert(newEntity)
+
 	}
 
 	override fun delete(entity: TodoList) {
-		dataSet.removeAt(entity.index)
+		dataSet.remove(entity)
 		deleteFile(entity)
+	}
+
+	override fun getSize(): Int {
+		return dataSet.size
 	}
 
 	@UseExperimental(ImplicitReflectionSerializer::class)

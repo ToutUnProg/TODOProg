@@ -9,34 +9,38 @@ import com.toutunprog.todoprog.R
 import com.toutunprog.todoprog.model.TodoList
 
 class TodoListAdapter(
-    private val myDataset: Array<TodoList>,
-    private val onTodoListItemClickListener: OnTodoListItemClickListener
+	private var myDataset: Array<TodoList>,
+	private val onTodoListItemClickListener: OnTodoListItemClickListener
 ) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val textView: TextView = view as TextView
+		val textView: TextView = view as TextView
 
-        fun bind(todoList: TodoList, onTodoListItemClickListener: OnTodoListItemClickListener) {
-            textView.text = todoList.title
-            itemView.setOnClickListener { onTodoListItemClickListener.onTodoListItemClick(todoList) }
-        }
-    }
+		fun bind(todoList: TodoList, onTodoListItemClickListener: OnTodoListItemClickListener) {
+			textView.text = todoList.title
+			itemView.setOnClickListener { onTodoListItemClickListener.onTodoListItemClick(todoList) }
+		}
+	}
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.todos_textview, parent, false)
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+		val view = LayoutInflater.from(parent.context)
+			.inflate(R.layout.todos_textview, parent, false)
 
-        return ViewHolder(view)
-    }
+		return ViewHolder(view)
+	}
 
-    override fun getItemCount() = myDataset.size
+	override fun getItemCount() = myDataset.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(myDataset[position], onTodoListItemClickListener)
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+		holder.bind(myDataset[position], onTodoListItemClickListener)
+	}
 
-    }
+	fun updateData(dataset: Array<TodoList>) {
+		myDataset = dataset
+		notifyDataSetChanged()
+	}
 
 
 }

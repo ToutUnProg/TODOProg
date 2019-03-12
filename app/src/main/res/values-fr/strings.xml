@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="action_settings">Paramètres</string>
+	<string name="create_todo_title">Créer liste de taches</string>
+	<string name="create_todo_description">Créer une nouvelle liste de tache</string>
+	<string name="create_todo_hint">Nom de liste de tache</string>
+
+</resources>

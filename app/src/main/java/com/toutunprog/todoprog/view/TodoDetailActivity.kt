@@ -9,7 +9,12 @@ import android.support.v7.widget.RecyclerView
 import com.toutunprog.todoprog.R
 import com.toutunprog.todoprog.TodoApplication
 import com.toutunprog.todoprog.adapter.TodoItemAdapter
+import com.toutunprog.todoprog.model.TodoItem
+import com.toutunprog.todoprog.model.TodoList
+import com.toutunprog.todoprog.view.uicomponents.AlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.contentView
 
 class TodoDetailActivity : AppCompatActivity() {
 	companion object {
@@ -23,8 +28,9 @@ class TodoDetailActivity : AppCompatActivity() {
 		}
 	}
 
-	private lateinit var viewAdapter: RecyclerView.Adapter<*>
+	private lateinit var viewAdapter: TodoItemAdapter
 	private lateinit var viewManager: RecyclerView.LayoutManager
+	private lateinit var todoList: TodoList
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -38,7 +44,7 @@ class TodoDetailActivity : AppCompatActivity() {
 		println("TodoDetailActivity created for list index : $todoListIndex")
 
 		viewManager = LinearLayoutManager(this)
-		val todoList = (application as TodoApplication).todoIRepository.getSingleByIndex(todoListIndex)
+		todoList = (application as TodoApplication).todoIRepository.getSingleByIndex(todoListIndex)
 		title = todoList.title
 		viewAdapter = TodoItemAdapter(todoList.items)
 
@@ -48,5 +54,24 @@ class TodoDetailActivity : AppCompatActivity() {
 			adapter = viewAdapter
 		}
 
+		fabTodoItem.setOnClickListener { view ->
+			contentView?.let {
+				val dialogBuilder = AlertDialogBuilder(
+					AnkoContext.create(this, it),
+					R.string.create_todo_title,
+					R.string.create_todo_description,
+					R.string.create_todo_hint
+				) { text ->
+					val repo = (application as TodoApplication).todoIRepository
+					val newItems = todoList.items.toMutableList()
+					newItems.add(TodoItem(todoList.items.size + 1, text, false))
+					val newTodoList = todoList.copy(items = newItems.toTypedArray())
+					viewAdapter.updateData(newTodoList.items)
+					repo.update(todoList, newTodoList)
+					todoList = newTodoList
+				}
+				dialogBuilder.build().show()
+			}
+		}
 	}
 }

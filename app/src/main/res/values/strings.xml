@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">TODOProg</string>
-    <string name="action_settings">Settings</string>
+	<string name="app_name" translatable="false">TODOProg</string>
+	<string name="action_settings">Settings</string>
+	<string name="create_todo_title">Create Todo list</string>
+	<string name="create_todo_description">Create a new Todo list</string>
+	<string name="create_todo_hint">Todo list name</string>
 </resources>

@@ -2,9 +2,11 @@
 
 buildscript {
 	ext.kotlin_version = '1.3.21'
+	ext.anko_version = '0.10.8'
+	ext.android_sdk_version = '28.0.0'
 
-	ext.experimentalsEnabled = ["-progressive", "-Xuse-experimental=kotlin.Experimental",
-								"-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer",
+	ext.experimentalsEnabled = ["-Xuse-experimental=kotlin.Experimental", //Tell to the compiler that we are going to do some experimentation
+								"-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer", //Tell to the compiler that we will experiment the serializer
 	]
 	repositories {
 		google()
@@ -14,8 +16,6 @@ buildscript {
 		classpath 'com.android.tools.build:gradle:3.3.2'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-		// NOTE: Do not place your application dependencies here; they belong
-		// in the individual module build.gradle files
 	}
 }
 
@@ -31,10 +31,9 @@ task clean(type: Delete) {
 	delete rootProject.buildDir
 }
 
+//ImplicitReflectionSerializer is still experimental, so we need to tell it to the compiler so it can compile properly
 subprojects {
 	tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all { task ->
-
 		task.kotlinOptions.freeCompilerArgs += experimentalsEnabled
-
 	}
 }
