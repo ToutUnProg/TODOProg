@@ -13,6 +13,7 @@ import com.toutunprog.todoprog.model.TodoItem
 import com.toutunprog.todoprog.model.TodoList
 import com.toutunprog.todoprog.view.uicomponents.AlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.content_detail.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.contentView
 
@@ -35,13 +36,12 @@ class TodoDetailActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_detail)
+		setSupportActionBar(toolbar)
 
 		val todoListIndex = intent.getIntExtra(INTENT_TODOLIST_ID, -1)
 		if (todoListIndex == -1) {
 			throw IllegalArgumentException("No $INTENT_TODOLIST_ID provided, please use TodoDetailActivity.createIntent")
 		}
-
-		println("TodoDetailActivity created for list index : $todoListIndex")
 
 		viewManager = LinearLayoutManager(this)
 		todoList = (application as TodoApplication).todoIRepository.getSingleByIndex(todoListIndex)

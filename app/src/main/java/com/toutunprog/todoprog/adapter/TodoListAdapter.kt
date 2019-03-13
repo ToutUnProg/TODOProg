@@ -15,7 +15,7 @@ class TodoListAdapter(
 
 	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-		val textView: TextView = view as TextView
+		val textView: TextView = view.findViewById(R.id.textView) as TextView
 
 		fun bind(todoList: TodoList, onTodoListItemClickListener: OnTodoListItemClickListener) {
 			textView.text = todoList.title
@@ -26,7 +26,7 @@ class TodoListAdapter(
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val view = LayoutInflater.from(parent.context)
-			.inflate(R.layout.todos_textview, parent, false)
+			.inflate(R.layout.todo_item, parent, false)
 
 		return ViewHolder(view)
 	}
