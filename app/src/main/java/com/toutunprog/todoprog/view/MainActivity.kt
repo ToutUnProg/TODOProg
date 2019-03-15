@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 					val repo = (application as TodoApplication).todoIRepository
 					repo.insert(
 						TodoList(
-							repo.getSize() + 1, text, arrayOf()
+							repo.getSize(), text, arrayOf()
 						)
 					)
 					viewAdapter.updateData(repo.getAll())
