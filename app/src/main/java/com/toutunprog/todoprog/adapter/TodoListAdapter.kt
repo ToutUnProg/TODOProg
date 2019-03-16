@@ -20,6 +20,10 @@ class TodoListAdapter(
 		fun bind(todoList: TodoList, onTodoListItemClickListener: OnTodoListItemClickListener) {
 			textView.text = todoList.title
 			itemView.setOnClickListener { onTodoListItemClickListener.onTodoListItemClick(todoList) }
+			itemView.setOnLongClickListener {
+				onTodoListItemClickListener.onTodoListItemLongClick(todoList)
+				return@setOnLongClickListener true
+			}
 		}
 	}
 

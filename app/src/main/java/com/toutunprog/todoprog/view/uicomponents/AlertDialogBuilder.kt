@@ -3,6 +3,7 @@ package com.toutunprog.todoprog.view.uicomponents
 import android.content.DialogInterface
 import android.support.design.widget.TextInputEditText
 import android.view.View
+import android.widget.TextView
 import org.jetbrains.anko.*
 
 class AlertDialogBuilder(
@@ -10,6 +11,7 @@ class AlertDialogBuilder(
 	private val titleRes: Int,
 	private val descriptionRes: Int,
 	private val placeholderRes: Int,
+	private val defaultValue: String = "",
 	private val callBack: (String) -> Unit
 ) {
 
@@ -27,7 +29,9 @@ class AlertDialogBuilder(
 							hint = context.getString(placeholderRes)
 							textInputEditTextVar = textInputEditText()
 							textInputEditTextVar.singleLine = true
-
+							textInputEditTextVar.setText(defaultValue, TextView.BufferType.EDITABLE)
+							textInputEditTextVar.isFocusableInTouchMode = true
+							textInputEditTextVar.requestFocus()
 						}
 					}
 				}

@@ -14,6 +14,7 @@ class TodoListRepository(private val context: Context) : IRepository<TodoList> {
 		getDataSet().toMutableList()
 
 	override fun getAll(): Array<TodoList> {
+		dataSet.sortBy { it.index }
 		return dataSet.toTypedArray()
 	}
 
@@ -22,8 +23,14 @@ class TodoListRepository(private val context: Context) : IRepository<TodoList> {
 	}
 
 	override fun insert(entity: TodoList) {
-		dataSet.add(entity)
-		saveToFile(entity)
+		var newEntity = entity
+		val filter = dataSet.filter { it.index == entity.index }
+		if (filter.size == 1 || entity.index == -1) {
+			dataSet.sortBy { it.index }
+			newEntity = entity.copy(index = if (dataSet.size > 0) dataSet.last().index + 1 else 0)
+		}
+		dataSet.add(newEntity)
+		saveToFile(newEntity)
 	}
 
 	override fun update(oldEntity: TodoList, newEntity: TodoList) {

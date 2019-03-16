@@ -35,6 +35,7 @@ dependencies {
 	implementation "com.android.support:appcompat-v7:$android_sdk_version"
 	implementation "com.android.support:recyclerview-v7:$android_sdk_version"
 	implementation "com.android.support:design:$android_sdk_version"
+
 	//Android sdk added because of anko
 	implementation "com.android.support:support-media-compat:$android_sdk_version"
 	implementation "com.android.support:support-v4:$android_sdk_version"

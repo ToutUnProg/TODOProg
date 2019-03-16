@@ -7,5 +7,13 @@
 	<string name="add_todo_item_title">Ajouter une tache</string>
 	<string name="add_todo_item_description">Ajouter une tache à la liste</string>
 	<string name="add_todo_item_hint">Tache</string>
+	<string name="rename_todo_item_title">Renommer la tache</string>
+	<string name="rename_todo_item_description">Renommer une tache de la liste de tache</string>
+	<string name="rename_todo_item_hint">Tache</string>
+	<string name="rename_todo_title">Renommer</string>
+	<string name="rename_todo_description">Renommer liste de tache</string>
+	<string name="rename_todo_hint">Nom de liste de tache</string>
+	<string name="delete">Supprimer</string>
+	<string name="rename">Renommer</string>
 
 </resources>
