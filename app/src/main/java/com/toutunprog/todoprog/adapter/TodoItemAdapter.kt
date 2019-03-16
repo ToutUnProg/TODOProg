@@ -15,7 +15,10 @@ class TodoItemAdapter(
 	private val onTodoItemChangeDoneStatusListener: OnTodoItemChangeDoneStatusListener
 ) : RecyclerView.Adapter<TodoItemAdapter.ViewHolder>() {
 
-	private var onBind = false
+	companion object {
+		private var onBind = false
+	}
+
 
 	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -24,20 +27,23 @@ class TodoItemAdapter(
 
 		fun bind(
 			todoItem: TodoItem,
-			onTodoItemChangeDoneStatusListener: OnTodoItemChangeDoneStatusListener,
-			onBind: Boolean
+			onTodoItemChangeDoneStatusListener: OnTodoItemChangeDoneStatusListener
 		) {
+			checkBox.setOnCheckedChangeListener(null)
 			textView.text = todoItem.text
 			checkBox.isChecked = todoItem.done
+			println("Bind todoItem $todoItem")
 			setTextViewDoneStatus(todoItem.done)
-
 			checkBox.setOnCheckedChangeListener { _, isChecked ->
+
+				println("check changed on todoItem $todoItem")
 				todoItem.done = isChecked
 				setTextViewDoneStatus(todoItem.done)
 				if (onBind) {
 					return@setOnCheckedChangeListener
 				}
 				onTodoItemChangeDoneStatusListener.onTodoItemChangeDoneStatus(todoItem)
+
 			}
 		}
 
@@ -61,11 +67,13 @@ class TodoItemAdapter(
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		onBind = true
-		holder.bind(myDataset[position], onTodoItemChangeDoneStatusListener, onBind)
+		holder.bind(myDataset[position], onTodoItemChangeDoneStatusListener)
 		onBind = false
 	}
 
+
 	fun updateData(dataset: Array<TodoItem>) {
+		println("updateData todoItems = ${dataset}")
 		myDataset = dataset
 		notifyDataSetChanged()
 	}
