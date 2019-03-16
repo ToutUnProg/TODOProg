@@ -12,13 +12,12 @@ import com.toutunprog.todoprog.model.TodoItem
 
 class TodoItemAdapter(
 	private var myDataset: Array<TodoItem>,
-	private val onTodoItemChangeDoneStatusListener: OnTodoItemChangeDoneStatusListener
+	private val onTodoItemClickListener: OnTodoItemClickListener
 ) : RecyclerView.Adapter<TodoItemAdapter.ViewHolder>() {
 
 	companion object {
 		private var onBind = false
 	}
-
 
 	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -27,7 +26,7 @@ class TodoItemAdapter(
 
 		fun bind(
 			todoItem: TodoItem,
-			onTodoItemChangeDoneStatusListener: OnTodoItemChangeDoneStatusListener
+			onTodoItemClickListener: OnTodoItemClickListener
 		) {
 			checkBox.setOnCheckedChangeListener(null)
 			textView.text = todoItem.text
@@ -42,8 +41,13 @@ class TodoItemAdapter(
 				if (onBind) {
 					return@setOnCheckedChangeListener
 				}
-				onTodoItemChangeDoneStatusListener.onTodoItemChangeDoneStatus(todoItem)
+				onTodoItemClickListener.onTodoItemChangeDoneStatus(todoItem)
 
+			}
+			itemView.setOnClickListener { checkBox.isChecked = !checkBox.isChecked }
+			itemView.setOnLongClickListener {
+				onTodoItemClickListener.onTodoItemLongClick(todoItem)
+				return@setOnLongClickListener true
 			}
 		}
 
@@ -67,7 +71,7 @@ class TodoItemAdapter(
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		onBind = true
-		holder.bind(myDataset[position], onTodoItemChangeDoneStatusListener)
+		holder.bind(myDataset[position], onTodoItemClickListener)
 		onBind = false
 	}
 

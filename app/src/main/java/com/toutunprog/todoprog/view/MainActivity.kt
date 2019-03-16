@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 					delete_action.setOnClickListener {
 						repo.delete(todoListItem)
 						viewAdapter.updateData(repo.getAll())
-						btSheetDialog.hide()
+						btSheetDialog.dismiss()
 					}
 					rename_action.setOnClickListener {
 						val dialogBuilder = AlertDialogBuilder(
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 						) { text ->
 							repo.update(todoListItem, todoListItem.copy(title = text))
 							viewAdapter.updateData(repo.getAll())
-							btSheetDialog.hide()
+							btSheetDialog.dismiss()
 						}
 						dialogBuilder.build().show()
 					}
